@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "password": "admin",
+    "role": "administrator",
+    "name": "Hospital Admin"
+  },
+  {
+    "id": 2,
+    "username": "nurse1",
+    "password": "mercury2024",
+    "role": "nurse",
+    "name": "Nurse Johnson"
+  },
+  {
+    "id": 3,
+    "username": "dr.valsh",
+    "password": "Valsh@123",
+    "role": "doctor",
+    "name": "Dr. Valsh"
+  }
+]

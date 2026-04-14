@@ -1,0 +1,15 @@
+{
+  "name": "mercury-general-hospital-ctf",
+  "version": "1.0.0",
+  "description": "Mercury General Hospital - CTF Machine 2 with 3 Flags",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "PORT=${PORT:-3000} node tests/test.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "author": "CTF Challenge Creator",
+  "license": "MIT"
+}

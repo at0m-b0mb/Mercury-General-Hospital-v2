@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments - Mercury General Hospital</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .appt-main { padding: 40px 24px; }
+        .appt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+        @media (max-width: 768px) { .appt-grid { grid-template-columns: 1fr; } }
+        .appt-panel { background: white; border-radius: 10px; padding: 28px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+        .appt-panel h3 { color: #1a3c6e; margin-bottom: 16px; font-size: 1.1rem; border-bottom: 2px solid #e3f2fd; padding-bottom: 8px; }
+        .appt-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #f5f5f5; font-size: 0.9rem; }
+        .appt-row:last-child { border-bottom: none; }
+        .appt-date { color: #1565c0; font-weight: 600; min-width: 110px; }
+        .appt-detail { flex: 1; padding: 0 12px; }
+        .appt-detail strong { display: block; }
+        .appt-detail span { color: #777; font-size: 0.82rem; }
+        .appt-status { padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+        .status-confirmed { background: #e8f5e9; color: #2e7d32; }
+        .status-pending { background: #fff3e0; color: #e65100; }
+        .status-cancelled { background: #ffebee; color: #c62828; }
+        .notice-box { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 14px 18px; margin-bottom: 24px; color: #856404; font-size: 0.9rem; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 0.9rem; font-weight: 600; color: #444; margin-bottom: 5px; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 9px 12px; border: 1px solid #d0d7e3; border-radius: 6px; font-size: 0.9rem;
+        }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+    </style>
+</head>
+<body>
+    <header class="hospital-header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-icon">🏥</span>
+                <div>
+                    <h1>Mercury General Hospital</h1>
+                    <p class="tagline">Appointments</p>
+                </div>
+            </div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/portal">Patient Portal</a>
+                <a href="/login">Staff Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="appt-main">
+        <div class="container">
+            <h2 style="color:#1a3c6e; margin-bottom:8px;">📅 Appointment Scheduling</h2>
+            <p style="color:#666; margin-bottom:20px;">View upcoming appointments or request a new one. Staff can view all appointments via the <a href="/login">staff portal</a>.</p>
+
+            <div class="notice-box">
+                ⚠️ <strong>System Notice:</strong> The online appointment system is currently in read-only mode due to a scheduled maintenance window (June 15–22, 2024). To schedule an appointment, call <strong>(702) 555-0100</strong> or visit the front desk.
+            </div>
+
+            <div class="appt-grid">
+
+                <div class="appt-panel">
+                    <h3>📋 Upcoming Appointments — June 16–20, 2024</h3>
+
+                    <div class="appt-row">
+                        <span class="appt-date">Jun 16, 9:00 AM</span>
+                        <div class="appt-detail">
+                            <strong>John Smith</strong>
+                            <span>Cardiology follow-up — Dr. Williams</span>
+                        </div>
+                        <span class="appt-status status-confirmed">Confirmed</span>
+                    </div>
+
+                    <div class="appt-row">
+                        <span class="appt-date">Jun 17, 2:30 PM</span>
+                        <div class="appt-detail">
+                            <strong>Maria Garcia</strong>
+                            <span>Orthopedics wrist check — Dr. Patel</span>
+                        </div>
+                        <span class="appt-status status-confirmed">Confirmed</span>
+                    </div>
+
+                    <div class="appt-row">
+                        <span class="appt-date">Jun 17, 4:00 PM</span>
+                        <div class="appt-detail">
+                            <strong>Stuart Price</strong>
+                            <span>Dental follow-up — Dr. Valsh</span>
+                            <span style="color:#c62828; font-size:0.78rem;">⚠ Patient no-showed previous 2 appointments</span>
+                        </div>
+                        <span class="appt-status status-pending">Pending</span>
+                    </div>
+
+                    <div class="appt-row">
+                        <span class="appt-date">Jun 18, 10:00 AM</span>
+                        <div class="appt-detail">
+                            <strong>Robert Chen</strong>
+                            <span>Neurology MRI — Dr. Williams</span>
+                        </div>
+                        <span class="appt-status status-confirmed">Confirmed</span>
+                    </div>
+
+                    <div class="appt-row">
+                        <span class="appt-date">Jun 18, 1:30 PM</span>
+                        <div class="appt-detail">
+                            <strong>Emily Watson</strong>
+                            <span>Concussion follow-up — Dr. Patel</span>
+                        </div>
+                        <span class="appt-status status-confirmed">Confirmed</span>
+                    </div>
+
+                    <div class="appt-row">
+                        <span class="appt-date">Jun 20, 3:00 PM</span>
+                        <div class="appt-detail">
+                            <strong>[Anonymous]</strong>
+                            <span>Psychiatric evaluation — Dr. Valsh</span>
+                            <span style="color:#888; font-size:0.78rem;">Patient requested name withheld. Referred by Las Vegas PD.</span>
+                        </div>
+                        <span class="appt-status status-pending">Pending</span>
+                    </div>
+                </div>
+
+                <div class="appt-panel">
+                    <h3>📝 Request an Appointment</h3>
+                    <p style="font-size:0.85rem; color:#888; margin-bottom:16px;">This form is currently disabled. Please call to book.</p>
+
+                    <form onsubmit="event.preventDefault(); alert('Online booking is currently unavailable. Please call (702) 555-0100 to schedule.');">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Your full name" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <input type="date" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Department</label>
+                            <select disabled>
+                                <option>-- Select Department --</option>
+                                <option>Cardiology</option>
+                                <option>Dental Emergency</option>
+                                <option>Emergency Room</option>
+                                <option>Neurology</option>
+                                <option>Orthopedics</option>
+                                <option>Pharmacy</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Preferred Date</label>
+                            <input type="date" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label>Reason for Visit</label>
+                            <textarea placeholder="Brief description of your concern" disabled></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Request Appointment</button>
+                    </form>
+
+                    <div style="margin-top:20px; padding-top:16px; border-top:1px solid #f0f0f0; font-size:0.85rem; color:#666;">
+                        <p>📞 <strong>Book by phone:</strong> (702) 555-0100</p>
+                        <p style="margin-top:6px;">🕐 <strong>Phone hours:</strong> Mon–Fri 7AM–7PM, Sat 8AM–4PM</p>
+                        <p style="margin-top:6px;">🏥 <strong>Walk-ins welcome</strong> at the Emergency Room 24/7</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Mercury General Hospital. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

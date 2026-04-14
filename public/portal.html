@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Portal - Mercury General Hospital</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="hospital-header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-icon">🏥</span>
+                <div>
+                    <h1>Mercury General Hospital</h1>
+                    <p class="tagline">Patient Portal</p>
+                </div>
+            </div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/login">Staff Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="portal-main">
+        <div class="container">
+            <div class="portal-hero">
+                <h2>Patient Self-Service Portal</h2>
+                <p>Access your medical records, prescriptions, and appointment information.</p>
+            </div>
+
+            <div class="portal-cards">
+                <div class="portal-card">
+                    <div class="card-icon">📋</div>
+                    <h3>Medical Records</h3>
+                    <p>View your treatment history, diagnoses and doctor notes.</p>
+                    <a href="/login" class="btn btn-primary">Access Records</a>
+                </div>
+                <div class="portal-card">
+                    <div class="card-icon">💊</div>
+                    <h3>Prescriptions</h3>
+                    <p>Review current prescriptions and refill requests.</p>
+                    <a href="/api/prescriptions" class="btn btn-secondary" target="_blank">View Prescriptions</a>
+                </div>
+                <div class="portal-card">
+                    <div class="card-icon">📅</div>
+                    <h3>Appointments</h3>
+                    <p>Schedule, modify or cancel upcoming appointments.</p>
+                    <a href="/appointments" class="btn btn-secondary">Schedule</a>
+                </div>
+                <div class="portal-card">
+                    <div class="card-icon">🔒</div>
+                    <h3>Staff Access</h3>
+                    <p>Hospital staff can access full patient management here.</p>
+                    <a href="/login" class="btn btn-primary">Staff Login</a>
+                </div>
+            </div>
+
+            <div class="portal-notice">
+                <h3>ℹ️ Portal Information</h3>
+                <ul>
+                    <li>For medical emergencies, call 911 or visit our Emergency Room.</li>
+                    <li>IT support is available at extension 4477.</li>
+                    <li>Check <a href="/robots.txt">site policies</a> for information on restricted areas.</li>
+                    <li>Security camera monitoring available via the <a href="/login">staff portal</a>.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Mercury General Hospital. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

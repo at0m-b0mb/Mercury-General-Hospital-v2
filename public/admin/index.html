@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Mercury General Hospital</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .admin-panel { max-width: 900px; margin: 40px auto; padding: 0 24px; }
+        .admin-card { background: white; border-radius: 10px; padding: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin-bottom: 24px; }
+        .admin-card h2 { color: #1a3c6e; margin-bottom: 16px; font-size: 1.3rem; border-bottom: 2px solid #e3f2fd; padding-bottom: 10px; }
+        .admin-stat { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.95rem; }
+        .admin-stat:last-child { border-bottom: none; }
+        .stat-value { font-weight: 600; color: #1a3c6e; }
+        .admin-warning { background: #ffebee; border: 1px solid #ef9a9a; border-radius: 6px; padding: 14px; margin-bottom: 16px; color: #c62828; font-size: 0.9rem; }
+        .admin-info { background: #e3f2fd; border: 1px solid #90caf9; border-radius: 6px; padding: 14px; margin-bottom: 16px; color: #1565c0; font-size: 0.9rem; }
+        .config-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        .config-table th { background: #1a3c6e; color: white; padding: 10px 14px; text-align: left; }
+        .config-table td { padding: 9px 14px; border-bottom: 1px solid #f0f0f0; }
+        .config-table tr:hover td { background: #f5f8ff; }
+        .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        .badge-warn { background: #fff3e0; color: #e65100; }
+        .badge-ok { background: #e8f5e9; color: #2e7d32; }
+        .badge-crit { background: #ffebee; color: #c62828; }
+    </style>
+</head>
+<body>
+    <!-- FLAG HINT: No flag here, but check /api/files?file=users.json for staff credentials -->
+    <!-- Also: backup credentials are in the default config below (they haven't been rotated) -->
+
+    <header class="hospital-header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-icon">🏥</span>
+                <div>
+                    <h1>Mercury General Hospital</h1>
+                    <p class="tagline">IT Administration Panel</p>
+                </div>
+            </div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/dashboard">Patient Portal</a>
+                <a href="/login">Staff Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="admin-panel">
+
+        <div class="admin-warning">
+            ⚠️ <strong>Access Restricted.</strong> This page is for IT administrators only.
+            Unauthorized access is logged and may result in disciplinary action.
+            If you reached this page in error, <a href="/">return to the home page</a>.
+        </div>
+
+        <div class="admin-card">
+            <h2>🖥️ System Overview</h2>
+            <div class="admin-info">
+                ℹ️ This panel was last updated on <strong>2024-06-10</strong>. Some settings below are marked as outdated.
+                Contact IT (ext. 4477) to update credentials.
+            </div>
+            <div class="admin-stat"><span>Hospital System Version</span><span class="stat-value">MercuryHMS v2.4.1</span></div>
+            <div class="admin-stat"><span>Server OS</span><span class="stat-value">Windows Server 2019</span></div>
+            <div class="admin-stat"><span>Database</span><span class="stat-value">SQLite (file-based)</span></div>
+            <div class="admin-stat"><span>Last Backup</span><span class="stat-value">2024-06-14 02:00 AM</span></div>
+            <div class="admin-stat"><span>Active Sessions</span><span class="stat-value">3</span></div>
+            <div class="admin-stat"><span>Uptime</span><span class="stat-value">14 days, 6 hours</span></div>
+        </div>
+
+        <div class="admin-card">
+            <h2>👤 System Accounts</h2>
+            <div class="admin-warning">
+                ⚠️ <strong>Security Notice:</strong> The default <code>admin</code> account password has <strong>NOT</strong> been changed
+                since installation. IT has been notified but ticket #ITK-2241 remains unresolved.
+                Default credentials are still <code>admin / admin</code>.
+            </div>
+            <table class="config-table">
+                <thead>
+                    <tr><th>Username</th><th>Role</th><th>Last Login</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>admin</strong></td>
+                        <td>Administrator</td>
+                        <td>2024-06-15 04:18 AM</td>
+                        <td><span class="badge badge-crit">⚠ Default Password</span></td>
+                    </tr>
+                    <tr>
+                        <td>nurse1</td>
+                        <td>Nurse</td>
+                        <td>2024-06-15 07:00 AM</td>
+                        <td><span class="badge badge-ok">✓ Active</span></td>
+                    </tr>
+                    <tr>
+                        <td>dr.valsh</td>
+                        <td>Doctor</td>
+                        <td>2024-06-14 11:30 PM</td>
+                        <td><span class="badge badge-ok">✓ Active</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin-top:12px; font-size:0.8rem; color:#888;">
+                Full user list available at <code>/api/files?file=users.json</code> (IT access only).
+            </p>
+        </div>
+
+        <div class="admin-card">
+            <h2>📁 File System Paths</h2>
+            <table class="config-table">
+                <thead>
+                    <tr><th>Resource</th><th>Path</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Patient Database</td>
+                        <td><code>/api/files?file=patients.json</code></td>
+                        <td><span class="badge badge-ok">Accessible</span></td>
+                    </tr>
+                    <tr>
+                        <td>Security Logs</td>
+                        <td><code>/security/logs/</code></td>
+                        <td><span class="badge badge-warn">⚠ Backup not cleaned</span></td>
+                    </tr>
+                    <tr>
+                        <td>Prescription Backup</td>
+                        <td><code>/backup/prescription_encoded.txt</code></td>
+                        <td><span class="badge badge-warn">⚠ Encoded (Base64)</span></td>
+                    </tr>
+                    <tr>
+                        <td>System Config Backup</td>
+                        <td><code>/backup/system_config.bak</code></td>
+                        <td><span class="badge badge-crit">⚠ Contains plaintext creds</span></td>
+                    </tr>
+                    <tr>
+                        <td>User Accounts</td>
+                        <td><code>/api/files?file=users.json</code></td>
+                        <td><span class="badge badge-crit">⚠ World-readable</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="admin-card">
+            <h2>🔒 Security Audit Log</h2>
+            <div class="admin-stat"><span>Failed Login Attempts (24h)</span><span class="stat-value" style="color:#c62828">47</span></div>
+            <div class="admin-stat"><span>Suspicious File Accesses</span><span class="stat-value" style="color:#e65100">3</span></div>
+            <div class="admin-stat"><span>Camera System Status</span><span class="stat-value">4/5 Online</span></div>
+            <div class="admin-stat"><span>Last Security Scan</span><span class="stat-value">2024-05-01 (OUTDATED)</span></div>
+            <p style="margin-top:12px; font-size:0.85rem; color:#888;">
+                Full security logs: <a href="/security/logs/">/security/logs/</a> |
+                Incident: Camera 04 footage edited — see backup log for original.
+            </p>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Mercury General Hospital IT Department. All activity is logged.</p>
+        </div>
+    </footer>
+</body>
+</html>

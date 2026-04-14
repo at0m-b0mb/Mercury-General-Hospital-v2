@@ -1,0 +1,45 @@
+========================================================
+  MERCURY GENERAL HOSPITAL - SYSTEM CONFIGURATION BACKUP
+  Generated: 2024-06-14 02:00 AM (automated nightly backup)
+========================================================
+
+[DATABASE]
+db_type=sqlite
+db_path=./data/patients.json
+db_backup_path=./data/patient_db_backup_2024.sql
+
+[SERVER]
+hostname=MERCURY-GENERAL-WEB01
+port=80
+admin_email=it-admin@mercurygeneral-lv.local
+
+[AUTH]
+session_secret=mercury_session_a3f8b2c1
+token_expiry=86400
+
+[ACCOUNTS]
+; WARNING: These default credentials have NOT been rotated since deployment
+; Ticket ITK-2241 (open): "Rotate default admin password"
+admin_username=admin
+admin_password=admin
+service_account=svc_mercury
+service_password=mercury_svc_2019!
+
+[LOGGING]
+log_dir=./logs
+security_log_dir=./security_logs
+backup_retention_days=30
+
+[CAMERA_SYSTEM]
+camera_api=http://localhost/api/security/cameras
+backup_log_prefix=.backup_
+; NOTE: backup logs with '.' prefix were not cleaned after admin edited camera_04 footage
+
+[PRESCRIPTION_SYSTEM]
+backup_encoding=base64
+backup_path=./backup/prescription_encoded.txt
+
+========================================================
+  END OF CONFIGURATION BACKUP
+  This file is CONFIDENTIAL - IT department use only
+========================================================

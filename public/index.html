@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercury General Hospital</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- FLAG 5 hint hidden in source -->
+    <!-- TODO: Remove debug comment before production -->
+    <!-- Prescription backup available at /backup/prescription_encoded.txt -->
+    <!-- API endpoints: /api/prescriptions, /api/prescriptions/hidden -->
+
+    <header class="hospital-header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-icon">🏥</span>
+                <div>
+                    <h1>Mercury General Hospital</h1>
+                    <p class="tagline">Caring for Las Vegas Since 1987</p>
+                </div>
+            </div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/portal">Patient Portal</a>
+                <a href="/login">Staff Login</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Welcome to Mercury General Hospital</h2>
+            <p>Your health and safety are our top priorities. Access your medical records, prescriptions, and more through our secure Patient Portal.</p>
+            <div class="hero-buttons">
+                <a href="/portal" class="btn btn-primary">Patient Portal</a>
+                <a href="#services" class="btn btn-secondary">Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="alert-banner">
+        <div class="alert-inner">
+            <span class="alert-icon">⚠️</span>
+            <span>Hospital Notice: Our patient portal system was recently updated. Please contact IT at ext. 4477 if you experience login issues.</span>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <h2>Our Departments</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🦷</div>
+                    <h3>Dental Emergency</h3>
+                    <p>24/7 emergency dental care for acute pain, extractions, and trauma.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚨</div>
+                    <h3>Emergency Room</h3>
+                    <p>Round-the-clock emergency medical care. No appointment needed.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">❤️</div>
+                    <h3>Cardiology</h3>
+                    <p>Comprehensive heart care from diagnosis to treatment.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🦴</div>
+                    <h3>Orthopedics</h3>
+                    <p>Expert care for bones, joints, ligaments, tendons and muscles.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🧠</div>
+                    <h3>Neurology</h3>
+                    <p>Diagnosis and treatment of disorders of the nervous system.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💊</div>
+                    <h3>Pharmacy</h3>
+                    <p>Full-service pharmacy with electronic prescriptions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="notice-board">
+        <div class="container">
+            <h2>Recent Hospital Notices</h2>
+            <div class="notice-list">
+                <div class="notice-item">
+                    <span class="notice-date">June 15, 2024</span>
+                    <p><strong>Security Update:</strong> Security camera system has been updated. IT staff should review camera logs for Parking Lot B from last night. Contact security desk (ext. 4477) with questions.</p>
+                </div>
+                <div class="notice-item">
+                    <span class="notice-date">June 15, 2024</span>
+                    <p><strong>Patient Portal:</strong> Login system upgraded. Default admin credentials are being phased out. Please update your password via the portal settings.</p>
+                </div>
+                <div class="notice-item">
+                    <span class="notice-date">June 14, 2024</span>
+                    <p><strong>Prescription System:</strong> New backup system for prescriptions is now active. Backup files are stored at <code>/backup/</code> for IT review.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h3>📍 Address</h3>
+                    <p>3800 S Maryland Pkwy<br>Las Vegas, NV 89119</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📞 Phone</h3>
+                    <p>Main: (702) 555-0100<br>Emergency: 911<br>IT Help Desk: ext. 4477</p>
+                </div>
+                <div class="contact-item">
+                    <h3>🕐 Hours</h3>
+                    <p>Emergency: 24/7<br>Outpatient: Mon-Fri 8AM-6PM<br>Pharmacy: Mon-Sat 8AM-8PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Mercury General Hospital. All rights reserved.</p>
+            <p><small>This system is for authorized users only. Unauthorized access is prohibited and may be prosecuted.</small></p>
+        </div>
+    </footer>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

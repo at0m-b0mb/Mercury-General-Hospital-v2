@@ -1,0 +1,49 @@
+{
+  "public_prescriptions": [
+    {
+      "id": "RX-001",
+      "patient": "John Smith",
+      "medication": "Amiodarone 200mg",
+      "dosage": "Once daily",
+      "doctor": "Dr. Williams",
+      "date": "2024-06-14"
+    },
+    {
+      "id": "RX-002",
+      "patient": "Maria Garcia",
+      "medication": "Ibuprofen 800mg",
+      "dosage": "Three times daily with food",
+      "doctor": "Dr. Patel",
+      "date": "2024-06-14"
+    },
+    {
+      "id": "RX-003",
+      "patient": "Stuart Price",
+      "medication": "Vicodin 5/500mg",
+      "dosage": "Every 6 hours as needed for pain",
+      "doctor": "Dr. Valsh",
+      "date": "2024-06-15",
+      "note": "See special prescription file for additional details"
+    },
+    {
+      "id": "RX-004",
+      "patient": "Robert Chen",
+      "medication": "Sumatriptan 50mg",
+      "dosage": "As needed for migraine onset",
+      "doctor": "Dr. Williams",
+      "date": "2024-06-14"
+    }
+  ],
+  "hidden_prescription": {
+    "id": "RX-003-SPECIAL",
+    "patient": "Stuart Price",
+    "medication": "Vicodin 5/500mg + Amoxicillin 500mg (infection prevention)",
+    "doctor": "Dr. Valsh",
+    "date": "2024-06-15",
+    "special_notes": "Patient requires follow-up at external facility. Coordinates encoded for secure transfer.",
+    "encoded_coordinates": "RkxBR3twcmVzY3JpcHRpb25fd2FyZWhvdXNlX2Nvb3JkaW5hdGVzfQ==",
+    "decode_hint": "The coordinates are Base64 encoded. Decode to find the warehouse location.",
+    "decoded_info": "FLAG{prescription_warehouse_coordinates} | Location: 36.1156 N, -115.1734 W | 1547 Industrial Blvd, Las Vegas, NV 89101 (Mr. Chow's Warehouse)"
+  },
+  "encoded_file": "=== MERCURY GENERAL HOSPITAL ===\n=== SECURE PRESCRIPTION BACKUP ===\n=== Patient: Stuart Price - RX-003-SPECIAL ===\n\nThis file contains encoded patient location data for secure external referral.\n\nENCODED PAYLOAD (Base64):\nRkxBR3twcmVzY3JpcHRpb25fd2FyZWhvdXNlX2Nvb3JkaW5hdGVzfQ==\n\nDECODE INSTRUCTIONS:\n1. Apply Base64 decoding to the payload above\n2. The result is your flag\n\nADDITIONAL ENCODED DATA (coordinates - Base64):\nMzYuMTE1NiBOLCAtMTE1LjE3MzQgVyAtIE1yLiBDaG93J3MgV2FyZWhvdXNlLCAxNTQ3IEluZHVzdHJpYWwgQmx2ZCwgTGFzIFZlZ2FzLCBOViA4OTEwMQ==\n\nThis document is CONFIDENTIAL. Unauthorized access is a violation of HIPAA.\n"
+}

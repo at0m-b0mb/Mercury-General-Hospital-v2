@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mercury General Hospital</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="hospital-header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-icon">🏥</span>
+                <div>
+                    <h1>Mercury General Hospital</h1>
+                    <p class="tagline">Staff Dashboard</p>
+                </div>
+            </div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/dashboard">Dashboard</a>
+                <span id="user-display" class="nav-user"></span>
+                <a href="#" onclick="logout()">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <div class="container">
+            <div class="dashboard-header">
+                <h2>Patient Records System</h2>
+                <p class="text-muted">Access and manage patient records. All activity is logged.</p>
+            </div>
+
+            <!-- FLAG 3 hint -->
+            <div class="info-banner">
+                <strong>🔍 Recent Admissions:</strong> 5 patients currently on file.
+                Browse records below or enter a Patient ID directly.
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>Patient List</h3>
+                        <button class="btn btn-sm" onclick="loadPatients()">Refresh</button>
+                    </div>
+                    <div id="patient-list" class="patient-list">
+                        <p class="loading">Loading patients...</p>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>Patient Record Viewer</h3>
+                    </div>
+                    <div class="search-bar">
+                        <input type="number" id="patient-id-input" placeholder="Enter Patient ID (e.g. 3)" min="1">
+                        <button class="btn btn-primary" onclick="loadPatient()">View Record</button>
+                    </div>
+                    <div id="patient-detail" class="patient-detail">
+                        <p class="placeholder-text">Select a patient to view their full record.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>Security Camera System</h3>
+                        <a href="/api/security/cameras" class="btn btn-sm" target="_blank">Camera Status API</a>
+                    </div>
+                    <p>View live camera status and access security logs.</p>
+                    <!-- FLAG 4 hint -->
+                    <div class="hint-note">
+                        💡 <strong>IT Note:</strong> Camera backup logs are stored at
+                        <code><a href="/security/logs/" target="_blank">/security/logs/</a></code>.
+                        Note that backup files (prefixed with <code>.</code>) contain unredacted footage data.
+                    </div>
+                    <div id="camera-list" class="camera-list"></div>
+                    <button class="btn btn-secondary" onclick="loadCameras()">Load Camera Status</button>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-header">
+                        <h3>Prescriptions</h3>
+                        <a href="/api/prescriptions" class="btn btn-sm" target="_blank">View API</a>
+                    </div>
+                    <p>Current prescriptions on file.</p>
+                    <!-- FLAG 5 hint -->
+                    <div class="hint-note">
+                        💡 <strong>Pharmacy Note:</strong> Some prescriptions have special encoded addenda.
+                        Check <code><a href="/api/prescriptions/hidden" target="_blank">/api/prescriptions/hidden</a></code>
+                        for encoded prescription data. Backup at
+                        <code><a href="/backup/prescription_encoded.txt" target="_blank">/backup/prescription_encoded.txt</a></code>.
+                    </div>
+                    <div id="rx-list" class="rx-list"></div>
+                    <button class="btn btn-secondary" onclick="loadPrescriptions()">Load Prescriptions</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Mercury General Hospital. All activity is monitored and logged.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Redirect to login if no token
+        if (!localStorage.getItem('mgh_token')) {
+            window.location.href = '/login';
+        }
+
+        const user = localStorage.getItem('mgh_user') || 'Staff';
+        document.getElementById('user-display').textContent = `👤 ${user}`;
+
+        function logout() {
+            localStorage.removeItem('mgh_token');
+            localStorage.removeItem('mgh_user');
+            window.location.href = '/login';
+        }
+
+        async function loadPatients() {
+            const res = await fetch('/api/patients');
+            const patients = await res.json();
+            const container = document.getElementById('patient-list');
+            container.innerHTML = patients.map(p => `
+                <div class="patient-row" onclick="selectPatient(${p.id})">
+                    <span class="patient-id">#${p.id}</span>
+                    <span class="patient-name">${p.name}</span>
+                    <span class="patient-date">${p.admission_date}</span>
+                </div>
+            `).join('');
+        }
+
+        function selectPatient(id) {
+            document.getElementById('patient-id-input').value = id;
+            loadPatient();
+        }
+
+        async function loadPatient() {
+            const id = document.getElementById('patient-id-input').value;
+            if (!id) return;
+            const res = await fetch(`/api/patients/${id}`);
+            if (!res.ok) {
+                document.getElementById('patient-detail').innerHTML = '<p class="error">Patient not found.</p>';
+                return;
+            }
+            const p = await res.json();
+            const fields = Object.entries(p).map(([k, v]) =>
+                `<tr><td><strong>${k.replace(/_/g, ' ')}</strong></td><td>${v}</td></tr>`
+            ).join('');
+            document.getElementById('patient-detail').innerHTML = `
+                <table class="record-table"><tbody>${fields}</tbody></table>
+            `;
+        }
+
+        async function loadCameras() {
+            const res = await fetch('/api/security/cameras');
+            const data = await res.json();
+            document.getElementById('camera-list').innerHTML = data.cameras.map(c => `
+                <div class="camera-row">
+                    <span class="cam-id">Cam ${c.id}</span>
+                    <span class="cam-location">${c.location}</span>
+                    <span class="cam-status cam-status-${c.status}">${c.status}</span>
+                </div>
+            `).join('') + `<p class="hint-text">${data.message}</p>`;
+        }
+
+        async function loadPrescriptions() {
+            const res = await fetch('/api/prescriptions');
+            const rxList = await res.json();
+            document.getElementById('rx-list').innerHTML = rxList.map(rx => `
+                <div class="rx-row">
+                    <strong>${rx.id}</strong> — ${rx.patient}: ${rx.medication}
+                    ${rx.note ? `<br><em>⚠️ ${rx.note}</em>` : ''}
+                </div>
+            `).join('');
+        }
+
+        // Auto-load patients on page load
+        loadPatients();
+    </script>
+</body>
+</html>

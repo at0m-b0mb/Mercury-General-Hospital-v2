@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - Mercury General Hospital</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .notfound-body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .notfound-main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
+        }
+        .notfound-box {
+            background: white;
+            border-radius: 12px;
+            padding: 50px 40px;
+            text-align: center;
+            max-width: 540px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .notfound-code { font-size: 6rem; font-weight: 800; color: #e8f0fb; line-height: 1; }
+        .notfound-box h2 { color: #1a3c6e; margin: 10px 0; font-size: 1.5rem; }
+        .notfound-box p { color: #666; margin-bottom: 6px; }
+        .notfound-links { margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .hint-section {
+            margin-top: 30px;
+            background: #fffde7;
+            border: 1px solid #fbc02d;
+            border-radius: 8px;
+            padding: 16px 20px;
+            text-align: left;
+            font-size: 0.85rem;
+            color: #5d4037;
+        }
+        .hint-section strong { display: block; margin-bottom: 6px; }
+        .hint-section ul { padding-left: 18px; margin: 0; }
+        .hint-section li { margin: 4px 0; }
+        .hint-section code { background: #fff8e1; padding: 1px 5px; border-radius: 3px; font-family: monospace; }
+    </style>
+</head>
+<body class="notfound-body">
+    <header class="hospital-header">
+        <div class="header-inner">
+            <div class="logo">
+                <span class="logo-icon">🏥</span>
+                <div>
+                    <h1>Mercury General Hospital</h1>
+                    <p class="tagline">Caring for Las Vegas Since 1987</p>
+                </div>
+            </div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/portal">Patient Portal</a>
+                <a href="/login">Staff Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="notfound-main">
+        <div class="notfound-box">
+            <div class="notfound-code">404</div>
+            <h2>Page Not Found</h2>
+            <p>The page you are looking for doesn't exist or has been moved.</p>
+            <p id="path-display" style="font-family:monospace; color:#aaa; font-size:0.85rem;"></p>
+
+            <div class="notfound-links">
+                <a href="/" class="btn btn-primary">🏥 Home</a>
+                <a href="/portal" class="btn btn-secondary">Patient Portal</a>
+                <a href="/login" class="btn btn-secondary">Staff Login</a>
+            </div>
+
+            <div class="hint-section">
+                <strong>🔍 Looking for something specific?</strong>
+                <ul>
+                    <li>Staff login: <a href="/login">/login</a></li>
+                    <li>Patient portal: <a href="/portal">/portal</a></li>
+                    <li>IT admin panel: <a href="/admin/">/admin/</a></li>
+                    <li>Site policies: <a href="/robots.txt">/robots.txt</a></li>
+                    <li>Camera status: <code>/api/security/cameras</code></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Mercury General Hospital. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('path-display').textContent = window.location.pathname;
+    </script>
+</body>
+</html>

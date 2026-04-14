@@ -1,0 +1,55 @@
+[
+  {
+    "id": 1,
+    "name": "John Smith",
+    "dob": "1985-03-12",
+    "admission_date": "2024-06-14",
+    "department": "Cardiology",
+    "diagnosis": "Mild arrhythmia",
+    "notes": "Patient stable. Follow-up in 2 weeks.",
+    "attending_doctor": "Dr. Williams"
+  },
+  {
+    "id": 2,
+    "name": "Maria Garcia",
+    "dob": "1990-07-22",
+    "admission_date": "2024-06-14",
+    "department": "Orthopedics",
+    "diagnosis": "Fractured wrist",
+    "notes": "Cast applied. Return in 6 weeks for X-ray.",
+    "attending_doctor": "Dr. Patel"
+  },
+  {
+    "id": 3,
+    "name": "Stuart 'Stu' Price",
+    "dob": "1978-11-05",
+    "admission_date": "2024-06-15",
+    "department": "Dental / Emergency",
+    "diagnosis": "Self-extracted molar (tooth #19)",
+    "admission_time": "2:47 AM",
+    "notes": "Patient arrived at 2:47 AM with a freshly extracted molar. Patient claims he VOLUNTARILY pulled his own tooth 'to prove his love' to an unidentified woman. Patient was highly intoxicated. Blood alcohol level: 0.24. Attending nurse noted patient was dropped off by a SHORT ANGRY ASIAN MAN who identified himself only as 'Mr. Chow' and left immediately in a silver Mercedes. Patient also had minor bruising on knuckles and what appeared to be a temporary tattoo on his face. Patient was accompanied by two other males (identified as Phil Wenneck and Alan Garner) who were also visibly intoxicated. FLAG{dental_record_stu_2_47_am}",
+    "attending_doctor": "Dr. Valsh",
+    "emergency_contact": "Melissa (fiancée) - NOT CONTACTED per patient request",
+    "discharge_status": "Discharged against medical advice at 4:15 AM"
+  },
+  {
+    "id": 4,
+    "name": "Robert Chen",
+    "dob": "1972-01-30",
+    "admission_date": "2024-06-14",
+    "department": "Neurology",
+    "diagnosis": "Migraine cluster",
+    "notes": "MRI scheduled. Prescribed sumatriptan.",
+    "attending_doctor": "Dr. Williams"
+  },
+  {
+    "id": 5,
+    "name": "Emily Watson",
+    "dob": "1995-09-18",
+    "admission_date": "2024-06-15",
+    "department": "Emergency",
+    "diagnosis": "Minor concussion",
+    "notes": "24-hour observation. CT scan clear.",
+    "attending_doctor": "Dr. Patel"
+  }
+]

@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  mercury-general:
+    build: .
+    container_name: mercury-general-hospital
+    ports:
+      - "80:80"       # Change left side (e.g. "8080:80") if port 80 is in use
+    environment:
+      - PORT=80
+    restart: unless-stopped
+
+# Usage:
+#   docker-compose up --build -d    # start in background
+#   docker-compose down             # stop
+#   docker-compose logs -f          # view logs
