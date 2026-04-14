@@ -6,7 +6,7 @@
 
 ## FLAG 3 — "The Dental Record"
 
-**Flag value:** `FLAG{dental_record_stu_2_47_am}`
+**Flag value:** `FLAG{dental_record_stu_price_voluntarily_extracted_molar_2_47_am}`
 
 ### Story context
 Stu Price arrived at Mercury General Hospital at 2:47 AM having voluntarily extracted his own molar "to prove his love." He was dropped off by a short angry Asian man who identified himself as Mr. Chow. The medical record documents this.
@@ -46,7 +46,7 @@ The `notes` field contains the flag:
 
 ## FLAG 4 — "The Security Footage"
 
-**Flag value:** `FLAG{security_footage_mercedes_3_15_am}`
+**Flag value:** `FLAG{security_footage_mercedes_parking_lot_b_nv_chow_88_3_15_am}`
 
 ### Story context
 Security camera footage from Parking Lot B (camera 04) shows Phil, Stu, Alan, and Mr. Chow loading something heavy into a Mercedes trunk at 3:15 AM. The license plate `NV-CHOW-88` is captured and traces to Mr. Chow's warehouse.
@@ -88,7 +88,7 @@ The backup log contains the unredacted footage entry at timestamp 03:15:00 with 
 
 ## FLAG 5 — "The Prescription"
 
-**Flag value:** `FLAG{prescription_warehouse_coordinates}`
+**Flag value:** `FLAG{prescription_encoded_warehouse_coordinates_1547_industrial_blvd_las_vegas}`
 
 ### Story context
 A hidden prescription backup file contains coordinates encoded in Base64. When decoded, they reveal the location of Mr. Chow's warehouse — the next target.
@@ -129,13 +129,13 @@ RkxBR3twcmVzY3JpcHRpb25fd2FyZWhvdXNlX2Nvb3JkaW5hdGVzfQ==
 
 **Step 4 — Decode Base64:**
 ```bash
-echo "RkxBR3twcmVzY3JpcHRpb25fd2FyZWhvdXNlX2Nvb3JkaW5hdGVzfQ==" | base64 -d
+echo "RkxBR3twcmVzY3JpcHRpb25fZW5jb2RlZF93YXJlaG91c2VfY29vcmRpbmF0ZXNfMTU0N19pbmR1c3RyaWFsX2JsdmRfbGFzX3ZlZ2FzfQ==" | base64 -d
 ```
-**Result:** `FLAG{prescription_warehouse_coordinates}`
+**Result:** `FLAG{prescription_encoded_warehouse_coordinates_1547_industrial_blvd_las_vegas}`
 
 **Windows PowerShell alternative:**
 ```powershell
-[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("RkxBR3twcmVzY3JpcHRpb25fd2FyZWhvdXNlX2Nvb3JkaW5hdGVzfQ=="))
+[System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("RkxBR3twcmVzY3JpcHRpb25fZW5jb2RlZF93YXJlaG91c2VfY29vcmRpbmF0ZXNfMTU0N19pbmR1c3RyaWFsX2JsdmRfbGFzX3ZlZ2FzfQ=="))
 ```
 
 **Alternative path:** Access `GET /api/prescriptions/hidden` directly for the `encoded_coordinates` JSON field.

@@ -27,7 +27,7 @@
     "department": "Dental / Emergency",
     "diagnosis": "Self-extracted molar (tooth #19)",
     "admission_time": "2:47 AM",
-    "notes": "Patient arrived at 2:47 AM with a freshly extracted molar. Patient claims he VOLUNTARILY pulled his own tooth 'to prove his love' to an unidentified woman. Patient was highly intoxicated. Blood alcohol level: 0.24. Attending nurse noted patient was dropped off by a SHORT ANGRY ASIAN MAN who identified himself only as 'Mr. Chow' and left immediately in a silver Mercedes. Patient also had minor bruising on knuckles and what appeared to be a temporary tattoo on his face. Patient was accompanied by two other males (identified as Phil Wenneck and Alan Garner) who were also visibly intoxicated. FLAG{dental_record_stu_2_47_am}",
+    "notes": "Patient arrived at 2:47 AM with a freshly extracted molar. Patient claims he VOLUNTARILY pulled his own tooth 'to prove his love' to an unidentified woman. Patient was highly intoxicated. Blood alcohol level: 0.24. Attending nurse noted patient was dropped off by a SHORT ANGRY ASIAN MAN who identified himself only as 'Mr. Chow' and left immediately in a silver Mercedes. Patient also had minor bruising on knuckles and what appeared to be a temporary tattoo on his face. Patient was accompanied by two other males (identified as Phil Wenneck and Alan Garner) who were also visibly intoxicated. FLAG{dental_record_stu_price_voluntarily_extracted_molar_2_47_am}",
     "attending_doctor": "Dr. Valsh",
     "emergency_contact": "Melissa (fiancée) - NOT CONTACTED per patient request",
     "discharge_status": "Discharged against medical advice at 4:15 AM"

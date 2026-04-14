@@ -41,9 +41,9 @@
     "doctor": "Dr. Valsh",
     "date": "2024-06-15",
     "special_notes": "Patient requires follow-up at external facility. Coordinates encoded for secure transfer.",
-    "encoded_coordinates": "RkxBR3twcmVzY3JpcHRpb25fd2FyZWhvdXNlX2Nvb3JkaW5hdGVzfQ==",
+    "encoded_coordinates": "RkxBR3twcmVzY3JpcHRpb25fZW5jb2RlZF93YXJlaG91c2VfY29vcmRpbmF0ZXNfMTU0N19pbmR1c3RyaWFsX2JsdmRfbGFzX3ZlZ2FzfQ==",
     "decode_hint": "The coordinates are Base64 encoded. Decode to find the warehouse location.",
-    "decoded_info": "FLAG{prescription_warehouse_coordinates} | Location: 36.1156 N, -115.1734 W | 1547 Industrial Blvd, Las Vegas, NV 89101 (Mr. Chow's Warehouse)"
+    "decoded_info": "FLAG{prescription_encoded_warehouse_coordinates_1547_industrial_blvd_las_vegas} | Location: 36.1156 N, -115.1734 W | 1547 Industrial Blvd, Las Vegas, NV 89101 (Mr. Chow's Warehouse)"
   },
-  "encoded_file": "=== MERCURY GENERAL HOSPITAL ===\n=== SECURE PRESCRIPTION BACKUP ===\n=== Patient: Stuart Price - RX-003-SPECIAL ===\n\nThis file contains encoded patient location data for secure external referral.\n\nENCODED PAYLOAD (Base64):\nRkxBR3twcmVzY3JpcHRpb25fd2FyZWhvdXNlX2Nvb3JkaW5hdGVzfQ==\n\nDECODE INSTRUCTIONS:\n1. Apply Base64 decoding to the payload above\n2. The result is your flag\n\nADDITIONAL ENCODED DATA (coordinates - Base64):\nMzYuMTE1NiBOLCAtMTE1LjE3MzQgVyAtIE1yLiBDaG93J3MgV2FyZWhvdXNlLCAxNTQ3IEluZHVzdHJpYWwgQmx2ZCwgTGFzIFZlZ2FzLCBOViA4OTEwMQ==\n\nThis document is CONFIDENTIAL. Unauthorized access is a violation of HIPAA.\n"
+  "encoded_file": "=== MERCURY GENERAL HOSPITAL ===\n=== SECURE PRESCRIPTION BACKUP ===\n=== Patient: Stuart Price - RX-003-SPECIAL ===\n\nThis file contains encoded patient location data for secure external referral.\n\nENCODED PAYLOAD (Base64):\nRkxBR3twcmVzY3JpcHRpb25fZW5jb2RlZF93YXJlaG91c2VfY29vcmRpbmF0ZXNfMTU0N19pbmR1c3RyaWFsX2JsdmRfbGFzX3ZlZ2FzfQ==\n\nDECODE INSTRUCTIONS:\n1. Apply Base64 decoding to the payload above\n2. The result is your flag\n\nADDITIONAL ENCODED DATA (coordinates - Base64):\nMzYuMTE1NiBOLCAtMTE1LjE3MzQgVyAtIE1yLiBDaG93J3MgV2FyZWhvdXNlLCAxNTQ3IEluZHVzdHJpYWwgQmx2ZCwgTGFzIFZlZ2FzLCBOViA4OTEwMQ==\n\nThis document is CONFIDENTIAL. Unauthorized access is a violation of HIPAA.\n"
 }
