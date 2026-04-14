@@ -509,3 +509,216 @@ footer {
 
 /* ---- Errors ---- */
 .error { color: #c62828; font-style: italic; }
+
+/* ============================================================
+   CTF — FLAG CAPTURE STYLES
+   ============================================================ */
+
+/* ---- Entrance animation wrapper ---- */
+.flag-capture-wrap {
+    margin: 14px 0 18px;
+    animation: flagReveal 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes flagReveal {
+    from { opacity: 0; transform: scale(0.9) translateY(12px); }
+    to   { opacity: 1; transform: scale(1)   translateY(0); }
+}
+
+/* ---- Main banner card ---- */
+.flag-capture-banner {
+    background: linear-gradient(135deg, #020e02 0%, #071a07 60%, #050f05 100%);
+    border: 1.5px solid #00ff41;
+    border-radius: 10px;
+    padding: 18px 22px;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 0 0 1px rgba(0, 255, 65, 0.12),
+        0 6px 28px rgba(0, 0, 0, 0.55),
+        0 0 40px rgba(0, 255, 65, 0.10);
+    animation: flagGlow 2.8s ease-in-out infinite;
+}
+
+@keyframes flagGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 0 1px rgba(0, 255, 65, 0.12),
+            0 6px 28px rgba(0, 0, 0, 0.55),
+            0 0 30px rgba(0, 255, 65, 0.10);
+        border-color: #00cc33;
+    }
+    50% {
+        box-shadow:
+            0 0 0 2px rgba(0, 255, 65, 0.35),
+            0 6px 28px rgba(0, 0, 0, 0.55),
+            0 0 60px rgba(0, 255, 65, 0.28);
+        border-color: #00ff41;
+    }
+}
+
+/* Scanline texture overlay */
+.flag-capture-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0, 255, 65, 0.018) 3px,
+        rgba(0, 255, 65, 0.018) 4px
+    );
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+/* Sweeping shimmer */
+.flag-capture-banner::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: -80%;
+    width: 55%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 255, 65, 0.07) 50%,
+        transparent 100%
+    );
+    animation: shimmerSweep 3.5s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmerSweep {
+    0%   { left: -80%; }
+    100% { left: 160%; }
+}
+
+/* ---- Banner content ---- */
+.flag-capture-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.flag-capture-label {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: #00cc33;
+    text-transform: uppercase;
+    opacity: 0.85;
+}
+
+.flag-capture-dots {
+    display: flex;
+    gap: 5px;
+}
+
+.flag-capture-dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00ff41;
+    opacity: 0.4;
+    animation: dotBlink 1.4s ease-in-out infinite;
+}
+
+.flag-capture-dots span:nth-child(2) { animation-delay: 0.2s; }
+.flag-capture-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dotBlink {
+    0%, 100% { opacity: 0.25; transform: scale(0.85); }
+    50%       { opacity: 1;    transform: scale(1); }
+}
+
+.flag-capture-value {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #00ff41;
+    text-shadow:
+        0 0 6px rgba(0, 255, 65, 0.9),
+        0 0 20px rgba(0, 255, 65, 0.5),
+        0 0 40px rgba(0, 255, 65, 0.2);
+    letter-spacing: 0.5px;
+    word-break: break-all;
+    line-height: 1.45;
+    user-select: all;
+    cursor: text;
+}
+
+.flag-capture-footer {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flag-capture-hint {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem;
+    color: #00cc33;
+    opacity: 0.55;
+}
+
+.flag-copy-btn {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.7rem;
+    background: transparent;
+    color: #00cc33;
+    border: 1px solid #00cc33;
+    border-radius: 4px;
+    padding: 3px 10px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.2s, background 0.2s;
+}
+
+.flag-copy-btn:hover {
+    opacity: 1;
+    background: rgba(0, 255, 65, 0.08);
+}
+
+/* ---- Inline FLAG{} token in text ---- */
+.flag-token {
+    display: inline-block;
+    background: #030d03;
+    color: #00ff41;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.88em;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    border: 1px solid #00cc33;
+    text-shadow: 0 0 6px rgba(0, 255, 65, 0.7);
+    box-shadow: 0 0 6px rgba(0, 255, 65, 0.25);
+    animation: tokenPulse 2.8s ease-in-out infinite;
+    user-select: all;
+    cursor: text;
+    vertical-align: baseline;
+}
+
+@keyframes tokenPulse {
+    0%, 100% {
+        box-shadow: 0 0 4px rgba(0, 255, 65, 0.2);
+        border-color: #009922;
+    }
+    50% {
+        box-shadow: 0 0 14px rgba(0, 255, 65, 0.6), 0 0 24px rgba(0, 255, 65, 0.15);
+        border-color: #00ff41;
+    }
+}
+
+/* ---- Row tint when it contains a flag ---- */
+.flag-row td {
+    background: linear-gradient(90deg, rgba(0, 255, 65, 0.04), rgba(0, 255, 65, 0.01));
+    position: relative;
+}
+
+.flag-row td:first-child {
+    border-left: 3px solid rgba(0, 255, 65, 0.4);
+}

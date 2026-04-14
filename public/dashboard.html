@@ -139,6 +139,32 @@
             loadPatient();
         }
 
+        function buildFlagBanner(flag) {
+            return `
+                <div class="flag-capture-wrap">
+                    <div class="flag-capture-banner">
+                        <div class="flag-capture-header">
+                            <span class="flag-capture-label">⚑ &nbsp; flag captured &nbsp; ⚑</span>
+                            <div class="flag-capture-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                        <div class="flag-capture-value">${flag}</div>
+                        <div class="flag-capture-footer">
+                            <span class="flag-capture-hint">// click value to select all &nbsp;·&nbsp; submit to scoreboard</span>
+                            <button class="flag-copy-btn" onclick="copyFlag(this, '${flag}')">copy</button>
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        function copyFlag(btn, text) {
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = 'copied!';
+                setTimeout(() => { btn.textContent = 'copy'; }, 1800);
+            });
+        }
+
         async function loadPatient() {
             const id = document.getElementById('patient-id-input').value;
             if (!id) return;
@@ -148,10 +174,30 @@
                 return;
             }
             const p = await res.json();
-            const fields = Object.entries(p).map(([k, v]) =>
-                `<tr><td><strong>${k.replace(/_/g, ' ')}</strong></td><td>${v}</td></tr>`
-            ).join('');
+
+            const flagPattern = /FLAG\{[^}]+\}/g;
+
+            // Build table rows, highlighting any FLAG{} tokens inline
+            const fields = Object.entries(p).map(([k, v]) => {
+                const strVal = String(v);
+                const hasFlag = flagPattern.test(strVal);
+                flagPattern.lastIndex = 0;
+                const displayVal = hasFlag
+                    ? strVal.replace(flagPattern, m => `<span class="flag-token">${m}</span>`)
+                    : strVal;
+                return `<tr${hasFlag ? ' class="flag-row"' : ''}>
+                    <td><strong>${k.replace(/_/g, ' ')}</strong></td>
+                    <td>${displayVal}</td>
+                </tr>`;
+            }).join('');
+
+            // Collect all flags from the full record for the banner(s)
+            const allText = Object.values(p).join('\n');
+            const flags = [...new Set(allText.match(/FLAG\{[^}]+\}/g) || [])];
+            const banners = flags.map(buildFlagBanner).join('');
+
             document.getElementById('patient-detail').innerHTML = `
+                ${banners}
                 <table class="record-table"><tbody>${fields}</tbody></table>
             `;
         }
