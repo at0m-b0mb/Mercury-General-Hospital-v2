@@ -78,15 +78,49 @@ if (-not $nodeOk) {
     exit 1
 }
 
+# Refresh PATH from the Windows registry so freshly-installed tools (npm, git, etc.)
+# are visible even when this PowerShell session was opened before the install.
+$machinePath = [System.Environment]::GetEnvironmentVariable('PATH', [System.EnvironmentVariableTarget]::Machine)
+$userPath    = [System.Environment]::GetEnvironmentVariable('PATH', [System.EnvironmentVariableTarget]::User)
+$env:PATH    = "$machinePath;$userPath"
+
 # --------------------------------------------------------------------------
 # 3. Check prerequisites: npm (bundled with Node.js, but verify)
 # --------------------------------------------------------------------------
+$npmOk  = $false
+$npmVer = $null
+
+# First try: npm via PATH (works after the registry refresh above)
 try {
     $npmVer = & npm --version 2>&1
-    if ($LASTEXITCODE -eq 0) {
-        Write-OK "npm found: v$npmVer"
+    if ($LASTEXITCODE -eq 0) { $npmOk = $true }
+} catch {}
+
+# Second try: find npm.cmd in the same directory as the node.exe we already found.
+# This covers edge cases where the node folder isn't in PATH (e.g. nvm setups).
+if (-not $npmOk) {
+    $nodeExe = (Get-Command node -ErrorAction SilentlyContinue).Source
+    if ($nodeExe) {
+        $npmPath = Join-Path (Split-Path $nodeExe) 'npm.cmd'
+        if (Test-Path $npmPath) {
+            try {
+                $npmVer = & $npmPath --version 2>&1
+                if ($LASTEXITCODE -eq 0) {
+                    $npmOk  = $true
+                    # Ensure the node directory is in PATH for all subsequent commands
+                    $nodeDir = Split-Path $nodeExe
+                    if ($env:PATH -notlike "*$nodeDir*") {
+                        $env:PATH = "$nodeDir;$env:PATH"
+                    }
+                }
+            } catch {}
+        }
     }
-} catch {
+}
+
+if ($npmOk) {
+    Write-OK "npm found: v$npmVer"
+} else {
     Write-Err "npm is not available. Reinstall Node.js from $NODE_URL"
     Read-Host "Press ENTER to exit"
     exit 1
