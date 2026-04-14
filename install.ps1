@@ -48,6 +48,11 @@ function Write-Info([string]$msg) {
 }
 
 # --------------------------------------------------------------------------
+# 0. Ensure scripts can run in this process (fixes npm.ps1 execution policy block)
+# --------------------------------------------------------------------------
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
+
+# --------------------------------------------------------------------------
 # 1. Banner
 # --------------------------------------------------------------------------
 Write-Banner
@@ -90,14 +95,23 @@ $env:PATH    = "$machinePath;$userPath"
 $npmOk  = $false
 $npmVer = $null
 
-# First try: npm via PATH (works after the registry refresh above)
+# First try: npm.cmd explicitly — avoids PowerShell resolving npm → npm.ps1 which
+# is blocked by restrictive execution policies (the most common Windows failure mode).
 try {
-    $npmVer = & npm --version 2>&1
+    $npmVer = & npm.cmd --version 2>&1
     if ($LASTEXITCODE -eq 0) { $npmOk = $true }
 } catch {}
 
-# Second try: find npm.cmd in the same directory as the node.exe we already found.
-# This covers edge cases where the node folder isn't in PATH (e.g. nvm setups).
+# Second try: bare npm (works if execution policy was already permissive)
+if (-not $npmOk) {
+    try {
+        $npmVer = & npm --version 2>&1
+        if ($LASTEXITCODE -eq 0) { $npmOk = $true }
+    } catch {}
+}
+
+# Third try: find npm.cmd next to the node.exe we already located.
+# Covers nvm-for-windows and other setups where the node folder isn't fully in PATH.
 if (-not $npmOk) {
     $nodeExe = (Get-Command node -ErrorAction SilentlyContinue).Source
     if ($nodeExe) {
@@ -107,7 +121,6 @@ if (-not $npmOk) {
                 $npmVer = & $npmPath --version 2>&1
                 if ($LASTEXITCODE -eq 0) {
                     $npmOk  = $true
-                    # Ensure the node directory is in PATH for all subsequent commands
                     $nodeDir = Split-Path $nodeExe
                     if ($env:PATH -notlike "*$nodeDir*") {
                         $env:PATH = "$nodeDir;$env:PATH"
@@ -216,7 +229,7 @@ else {
 Write-Host ""
 Write-Step "Installing Node.js dependencies (npm install)..."
 Set-Location $PROJECT_DIR
-& npm install
+& npm.cmd install
 if ($LASTEXITCODE -ne 0) {
     Write-Err "npm install failed. Check your internet connection and try again."
     Read-Host "Press ENTER to exit"
